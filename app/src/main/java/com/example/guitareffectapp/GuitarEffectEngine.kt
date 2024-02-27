@@ -10,7 +10,7 @@ import com.synervoz.switchboardsuperpowered.audiographnodes.GuitarDistortionNode
 import com.synervoz.switchboardsuperpowered.audiographnodes.ReverbNode
 
 class GuitarEffectEngine(context: Context) {
-    val audioEngine = AudioEngine(context)
+    val audioEngine = AudioEngine(context = context, microphoneEnabled = true)
     val audioGraph = AudioGraph()
     val gainNode = GainNode()
 
@@ -33,7 +33,6 @@ class GuitarEffectEngine(context: Context) {
         audioGraph.connect(guitarDistortionNode, reverbNode)
         audioGraph.connect(reverbNode, gainNode)
         audioGraph.connect(gainNode, audioGraph.outputNode)
-        audioEngine.microphoneEnabled = true
     }
 
     fun start() {

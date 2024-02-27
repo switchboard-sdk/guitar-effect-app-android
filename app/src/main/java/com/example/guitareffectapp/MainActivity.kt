@@ -55,7 +55,9 @@ class MainActivity : AppCompatActivity() {
         SuperpoweredExtension.initialize("ExampleLicenseKey-WillExpire-OnNextUpdate")
         engine = GuitarEffectEngine(this)
         engine.start()
-        setContentView(UIGenerator.generateViews(this, engine.audioGraph).getView())
+        setContentView(UIGenerator.generateViews(this, engine.audioGraph, emptyList(),
+            SwitchboardSDK.getFullyQualifiedAudioNodeNames() +
+                    SuperpoweredExtension.getFullyQualifiedAudioNodeNames()).getView())
     }
 
     override fun onDestroy() {
